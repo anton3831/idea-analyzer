@@ -11,6 +11,7 @@ export default function SignUpPage() {
             colorPrimary: '#6366f1',
             colorInputBackground: '#1a1d2e',
             colorInputText: '#e2e8f0',
+            colorNeutral: '#e2e8f0',
           },
           elements: {
             card: 'shadow-2xl border border-white/10',
@@ -19,6 +20,11 @@ export default function SignUpPage() {
             socialButtonsBlockButton: 'border border-white/10 text-slate-300 hover:bg-white/5',
             formFieldLabel: 'text-slate-300',
             footerActionLink: 'text-indigo-400 hover:text-indigo-300',
+            // 전화번호 필드 텍스트 가시성
+            phoneInputBox: 'text-slate-200 bg-[#1a1d2e]',
+            formFieldInput: 'text-slate-200 placeholder:text-slate-500',
+            selectButton: 'text-slate-200',
+            selectOption: 'text-slate-200',
           },
         }}
       />
