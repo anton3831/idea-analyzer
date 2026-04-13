@@ -1,4 +1,5 @@
 import { NextRequest } from 'next/server';
+import { auth } from '@clerk/nextjs/server';
 import { loadGuide } from '@/lib/loadGuide';
 import { buildPrompt } from '@/lib/buildPrompt';
 import { callGLMStream, createSSEParser } from '@/lib/callGLM';
@@ -7,6 +8,15 @@ export const runtime = 'nodejs';
 export const maxDuration = 120; // 2분
 
 export async function POST(req: NextRequest) {
+  // 인증 확인
+  const { userId } = await auth();
+  if (!userId) {
+    return new Response(JSON.stringify({ error: '로그인이 필요합니다.' }), {
+      status: 401,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
   // 요청 본문에서 아이디어 추출
   let idea: string;
   try {

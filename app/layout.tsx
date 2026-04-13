@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { ClerkProvider } from '@clerk/nextjs';
+import Header from '@/components/Header';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -12,14 +14,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='ko'>
-      <head>
-        <link rel='preconnect' href='https://fonts.googleapis.com' />
-        <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='anonymous' />
-      </head>
-      <body className='min-h-screen bg-[#08090f] text-slate-200 antialiased'>
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang='ko'>
+        <head>
+          <link rel='preconnect' href='https://fonts.googleapis.com' />
+          <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='anonymous' />
+        </head>
+        <body className='min-h-screen bg-[#08090f] text-slate-200 antialiased'>
+          <Header />
+          <main className='pt-14'>
+            {children}
+          </main>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
